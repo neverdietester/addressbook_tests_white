@@ -23,10 +23,17 @@ namespace addressbook_tests_white
          public bool IsGroupExists()
          {
             Window dialogue = OpenGroupsDialogue();
-            Tree tree = dialogue.Get<Tree>("uxAddressTreeView");
-            TreeNode root = tree.Nodes[0];
-           
-            return false;
+            TreeNode treeNode = (TreeNode)dialogue.Get(SearchCriteria.ByControlType(ControlType.TreeItem));
+            if (treeNode.Nodes.Count() > 1)
+            {
+                CloseGroupsDialogue(dialogue);
+                return false;
+                
+            }
+            CloseGroupsDialogue(dialogue);
+            return true;
+            
+
         }
 
         public List<GroupData> GetGroupList()

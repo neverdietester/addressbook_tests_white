@@ -12,12 +12,14 @@ namespace addressbook_tests_white
         [Test]
         public void TestGroupRemove()
         {
-            if (app.Groups.IsGroupExists() != false)
+            if (app.Groups.IsGroupExists() == true)
             {
                 GroupData newGroup = new GroupData()
                 {
-                    Name = "test"
+                    Name = "white"
                 };
+                app.Groups.Add(newGroup);
+
             }
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
